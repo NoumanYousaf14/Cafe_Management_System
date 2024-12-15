@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 
 // query to get all categories
-@NamedQuery(name = "Category.getAllCategory", query = "SELECT c FROM Category c")
+@NamedQuery(name = "Category.getAllCategory", query = "SELECT c FROM Category c where c.id in (select p.category.id from Product p where p.status='true')")
 
 
 
