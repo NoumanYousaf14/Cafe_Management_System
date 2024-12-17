@@ -1,0 +1,70 @@
+<!-- Toolbar for the login Dialog -->
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <!-- Title for the dialog -->
+        <span>Login</span>
+        <!-- Spacer to push the button to the right -->
+        <span class="spacer"></span>
+        <!-- Close button with pointer cursor -->
+        <button class="pointer  mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+
+<!-- Main content area of the login Dialog -->
+<mat-dialog-content class="mat-typography">
+    <!-- Reactive form for user login -->
+    <form [formGroup]="loginForm">
+        <div fxFlex fxLayout="column">
+        
+            <!-- Email Field -->
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Email</mat-label>
+                <!-- Input field for email validation -->
+                <input matInput formControlName="email" required>
+                <!-- Display error if the email field fails validation -->
+                <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                    <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory</span>
+                    <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid</span>
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Password Field -->
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Password</mat-label>
+                <!-- Password visibility toggle logic -->
+                <input matInput formControlName="password" type="password" [type]="hide ? 'password' : 'text'" required>
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  </button>
+                  
+                <!-- Display error if password field is invalid -->
+                <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                    <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+
+
+<!-- Action buttons at the bottom of the login Dialog -->
+<mat-dialog-actions align="end">
+    <!-- Submit button to handle login logic -->
+    <button mat-raised-button color="primary"
+            type="submit"
+            (click)="handleSubmit()"
+            [disabled]="!loginForm.valid || !loginForm.dirty">
+        <mat-icon>login</mat-icon>Login
+    </button>
+    
+    <!-- Cancel button to close the dialog -->
+    <button mat-raised-button color="warn" mat-dialog-close>
+        <mat-icon>cancel</mat-icon> Close
+    </button>
+</mat-dialog-actions>

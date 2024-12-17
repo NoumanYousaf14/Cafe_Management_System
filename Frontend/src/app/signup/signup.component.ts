@@ -55,32 +55,33 @@ export class SignupComponent implements OnInit {
   }
 
   // functiont to handel the submit to call api
-  handleSubmit(){
+  handleSubmit() {
     this.ngxService.start();
-    var formData=this.signupForm.value;
-    var data={
-      name:formData.name,
-      email:formData.email,
-      contactNumber:formData.contactNumber,
-      password:formData.password
-    }
-
-    this.userService.signup(data).subscribe((response:any)=>{
-      this.ngxService.stop();
-      this.dialogRef.close();
-      this.responseMessage=response?.message;
-      this.snackBarServie.openSnackBar(this.responseMessage,"");
-      this.route.navigate(['/']);
-    },(error)=>{
-      this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage=error.error?.message;
+    const formData = this.signupForm.value;
+  
+    const data = {
+      name: formData.name,
+      email: formData.email,
+      contactNumber: formData.contactNumber,
+      password: formData.password
+    };
+  
+    this.userService.signup(data).subscribe({
+      next: (response: any) => {
+        this.ngxService.stop();
+        console.log('Signup Success Response:', response); // Log the response
+        this.responseMessage = response?.message || 'Signup successful!';
+        this.snackBarServie.openSnackBar(this.responseMessage, '');
+        this.dialogRef.close(); // Close form on success
+        this.route.navigate(['/']);
+      },
+      error: (error) => {
+        this.ngxService.stop();
+        console.error('Signup Error:', error); // Log the error
+        this.responseMessage = error.error?.message || GlobalConstant.genericMessage;
+        this.snackBarServie.openSnackBar(this.responseMessage, GlobalConstant.error);
       }
-      else{
-        this.responseMessage=GlobalConstant.genericMessage;
-      }
-      this.snackBarServie.openSnackBar(this.responseMessage,GlobalConstant.error);
-    })
+    });
   }
-
+  
 }
