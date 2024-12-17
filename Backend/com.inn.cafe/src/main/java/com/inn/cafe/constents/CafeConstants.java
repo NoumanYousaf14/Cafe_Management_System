@@ -7,6 +7,6 @@ public class CafeConstants {
 
     public static final String UNAUTHORIZED="Unauthorized Access";
 
-    public static final String STORE_LOC="/Users/noumanyousaf/Documents/Documents - Nouman’s MacBook Air/Fifth smester/SCD lab/CMS/BILLS";
+    public static final String STORE_LOC="/Users/noumanyousaf/Documents/Documents - Nouman’s MacBook Air/Fifth smester/SCD lab/Cafe_Management_System/Backend/BILLS";
 
 }
