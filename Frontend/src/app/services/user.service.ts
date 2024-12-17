@@ -19,4 +19,23 @@ export class UserService {
       }
     )
   }
+
+
+  // method for the forgot password functionality
+  forgotPassword(data:any){
+    return this.httpClient.post(this.url+
+      "/user/forgotPassword",data,{
+        headers:new HttpHeaders().set('Content-Type','application/json')
+      }
+    )
+  }
+
+    // method for the login functionality
+    login(data:any){
+      return this.httpClient.post(this.url+
+        "/user/login",data,{
+          headers:new HttpHeaders().set('Content-Type','application/json')
+        }
+      )
+    }
 }
