@@ -39,11 +39,19 @@ export class UserService {
       )
     }
 
-    // method for the login functionality
+    // method for the check token functionality
     checkToken(){
       return this.httpClient.get(this.url+
         "/user/checkToken");
     }
 
+      // method for the forgot password functionality
+    changePassword(data:any){
+    return this.httpClient.post(this.url+
+      "/user/changePassword",data,{
+        headers:new HttpHeaders().set('Content-Type','application/json')
+      }
+    )
+  }
 
 }

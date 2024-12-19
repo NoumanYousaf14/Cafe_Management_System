@@ -1,0 +1,37 @@
+<!-- Toolbar for the confirmation Dialog -->
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <!-- Title for the dialog -->
+        <span>Confirmation</span>
+        <!-- Spacer to push the button to the right -->
+        <span class="spacer"></span>
+        <!-- Close button with pointer cursor -->
+        <button class="pointer  mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-dialog-content class="mat-typography">
+   
+     <h6>Are you sure want to {{details.message}}</h6
+        >
+</mat-dialog-content>
+
+
+
+<!-- Action buttons at the bottom of the login Dialog -->
+<mat-dialog-actions align="end">
+    <!-- Submit button to handle login logic -->
+    <button mat-raised-button color="primary"
+            type="submit"
+            (click)="handleChangeAction()">
+            <mat-icon>check_circle</mat-icon>Yes
+    </button>
+    
+    <!-- Cancel button to close the dialog -->
+    <button mat-raised-button color="warn" mat-dialog-close>
+        <mat-icon>cancel</mat-icon> No
+    </button>
+</mat-dialog-actions>

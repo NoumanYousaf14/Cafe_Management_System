@@ -1,0 +1,59 @@
+<style>
+/* Sidebar item */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  background-color: #8e24aa; /* Purple background for items */
+  color: white; /* White text */
+  border-radius: 6px; /* Rounded corners */
+  margin-top: 2px;
+  margin-left: 9px;
+  margin-right: 9px; /* Spacing */
+  padding: 10px 15px; /* Inside padding */
+  text-decoration: none; /* Remove underline */
+  /* transition: transform 0.2s, box-shadow 0.2s; Hover effect */
+}
+
+/* Sidebar item hover effect */
+/* .sidebar-item:hover { */
+  /* background-color: #7b1fa2; Darker purple on hover */
+  /* transform: scale(1.02); Slight zoom effect */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Add shadow */
+/* } */
+
+/* Active menu item */
+.active-menu-item {
+  background-color: #6a1b9a; /* Highlighted background */
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+/* Sidebar icon */
+mat-icon {
+  margin-right: 10px; /* Spacing between icon and text */
+}
+</style>
+
+
+<mat-nav-list appAccordion>
+    <!-- Loop through each menu item and display it -->
+    <mat-nav-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuItems()" 
+                   routerLinkActive="selected" group="{{menuitem.state}}">
+      
+      <!-- Only display the item if its type is 'link' and role condition matches -->
+      <a class="sidebar-item" *ngIf="menuitem.type === 'link' && (menuitem.role === '' || menuitem.role === userRole)" 
+         [routerLink]="['/cafe', menuitem.state]">
+        
+        <!-- Display the icon for the menu item -->
+        <mat-icon>
+          {{ menuitem.icon }}
+        </mat-icon>
+        
+        <!-- Display the name of the menu item -->
+        <span>
+          {{ menuitem.name }}
+        </span>
+      </a>
+    </mat-nav-item>
+  </mat-nav-list>
+  
