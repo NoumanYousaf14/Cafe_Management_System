@@ -38,4 +38,12 @@ export class UserService {
         }
       )
     }
+
+    // method for the login functionality
+    checkToken(){
+      return this.httpClient.get(this.url+
+        "/user/checkToken");
+    }
+
+
 }

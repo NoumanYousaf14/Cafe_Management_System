@@ -1,7 +1,9 @@
 export class GlobalConstant{
 
     // message
-    public static genericMessage="Something went Wrong! Please try again later";
+    public static genericMessage:string="Something went Wrong! Please try again later";
+
+    public static unauthorized:string="Your are not authorized to access this page.";
 
     // regex
     public static nameRegex:string="[a-zA-Z0-9 ]*";
