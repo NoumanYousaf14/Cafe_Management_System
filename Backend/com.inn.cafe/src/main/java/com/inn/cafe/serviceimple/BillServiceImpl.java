@@ -1,5 +1,6 @@
 package com.inn.cafe.serviceimple;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inn.cafe.JWT.JwtFilter;
 import com.inn.cafe.POJO.Bill;
 import com.inn.cafe.constents.CafeConstants;
@@ -96,7 +97,8 @@ public class BillServiceImpl implements BillService {
                 document.add(footer);
 
                 document.close();
-                return CafeUtils.getResponseEntity("{\"uuid\":\""+fileName+"\"}",HttpStatus.OK);
+                return new ResponseEntity<>(new ObjectMapper().writeValueAsString(Map.of("uuid", fileName)), HttpStatus.OK);
+
             }
             return CafeUtils.getResponseEntity("Required data does not found",HttpStatus.BAD_REQUEST);
 

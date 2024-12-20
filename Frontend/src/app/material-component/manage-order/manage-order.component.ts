@@ -176,42 +176,43 @@ export class ManageOrderComponent implements OnInit {
     this.dataSource = [...this.dataSource];
   }
 
-    // Submit the order
-    submitAction() {
-      const formData = this.manageOrderForm.value;
-      const data = {
-        name: formData.name,
-        email: formData.email,
-        contactNumber: formData.contactNumber,
-        paymentMethod: formData.paymentMethod,
-        totalAmount: this.totalAmount.toString(),
-        productDetails: JSON.stringify(this.dataSource)
-      };
-  
-      this.ngxService.start();
-      this.billService.generateReport(data).subscribe(
-        (response: any) => {
-          this.downloadFile(response?.uuid);
-          this.manageOrderForm.reset();
-          this.dataSource = [];
-          this.totalAmount = 0;
-        },
-        (error: any) => {
-          this.ngxService.stop();
-          this.responseMessage = error.error?.message || GlobalConstant.genericMessage;
-          this.snackBarService.openSnackBar(this.responseMessage, GlobalConstant.error);
-        }
-      );
-    }
+  submitAction() {
+    const formData = this.manageOrderForm.value;
+    const data = {
+      name: formData.name,
+      email: formData.email,
+      contactNumber: formData.contactNumber,
+      paymentMethod: formData.paymentMethod,
+      totalAmount: this.totalAmount.toString(),
+      productDetails: JSON.stringify(this.dataSource)
+    };
 
-  // Download the generated bill PDF
-  downloadFile(fileName: string) {
-    const data = { uuid: fileName };
-    this.billService.getPdf(data).subscribe((response: any) => {
-      saveAs(response, fileName + '.pdf');
-      this.ngxService.stop();
-    });
+    this.ngxService.start();
+    this.billService.generateReport(data).subscribe(
+      (response: any) => {
+        this.manageOrderForm.reset();
+        this.dataSource = [];
+        this.totalAmount = 0;
+        this.snackBarService.openSnackBar('Bill submitted successfully', 'success');
+        this.ngxService.stop(); 
+      },
+      (error: any) => {
+        this.ngxService.stop();
+        this.responseMessage = error.error?.message || GlobalConstant.genericMessage;
+        this.snackBarService.openSnackBar(this.responseMessage, GlobalConstant.error);
+      }
+    );
   }
+  
+
+  // // Download the generated bill PDF
+  // downloadFile(fileName: string) {
+  //   const data = { uuid: fileName };
+  //   this.billService.getPdf(data).subscribe((response: any) => {
+  //     saveAs(response, fileName + '.pdf');
+  //     this.ngxService.stop();
+  //   });
+  // }
 
 }
 

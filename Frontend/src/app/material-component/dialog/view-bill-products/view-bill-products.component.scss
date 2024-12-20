@@ -1,42 +1,54 @@
 .mat-toolbar {
-    margin: -24px;
-    margin-bottom: 0;
-    width: auto;
-    margin-bottom: 10PX;
+  margin: -24px;
+  margin-bottom: 10px;
+  width: auto;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Responsive table wrapper for scrolling */
+.responsive-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.responsive-table {
+  width: 100%;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+.responsive-table th,
+.responsive-table td {
+  text-align: left;
+  padding: 8px;
+  white-space: nowrap; /* Prevents content wrapping */
+}
+
+.responsive-table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.responsive-table td {
+  word-wrap: break-word; /* Allows content to wrap within cells */
+}
+
+@media screen and (max-width: 768px) {
+  #customers td,
+  #customers th,
+  .responsive-table th,
+  .responsive-table td {
+      font-size: 14px;
+      padding: 6px;
   }
-  
-    mat-form-field{
-        padding: 5px;
-    }
-
-    .float-right{
-        float: right;
-    }
-    
-    mat-card{
-        padding: 20px;
-    }
-    
-    table {
-        width: 100%;
-      }
-
-
-      #customers {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-      
-      #customers td, #customers th {
-        border: 1px solid #ddd;
-        padding: 8px;
-      }
-      
-      #customers th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #04AA6D;
-        color: white;
-      }
+}
