@@ -5,6 +5,12 @@ export class GlobalConstant{
 
     public static unauthorized:string="Your are not authorized to access this page.";
 
+    public static productExistError:string="Product already exist";
+
+    public static productAdded:string="Product added successfully";
+
+
+
     // regex
     public static nameRegex:string="[a-zA-Z0-9 ]*";
 
