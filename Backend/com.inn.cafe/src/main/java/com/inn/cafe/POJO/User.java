@@ -17,7 +17,7 @@ import java.util.Collection;
 // query to find user by email
 @NamedQuery(name = "User.findByEmailId", query = "SELECT u FROM User u WHERE u.email = :email")
 //query to get all users
-@NamedQuery(name = "User.getAllUser", query = "SELECT new com.inn.cafe.wrapper.UserWrapper(u.id, u.name, u.email, u.contactNumber, u.password) FROM User u WHERE u.role = 'user'")
+@NamedQuery(name = "User.getAllUser", query = "SELECT new com.inn.cafe.wrapper.UserWrapper(u.id, u.name, u.email, u.contactNumber, u.password,u.status) FROM User u WHERE u.role = 'user'")
 
 // query to update status
 @NamedQuery(name = "User.updateStatus", query = "update User u set u.status =:status  WHERE u.id = :id")

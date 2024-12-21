@@ -27,12 +27,16 @@ public class UserWrapper {
     @JsonProperty("password")
     private String password;
 
-    public UserWrapper(Integer id, String name, String email, String contactNumber, String password) {
+    @JsonProperty("status")
+    private String status;
+
+    public UserWrapper(Integer id, String name, String email, String contactNumber, String password, String status) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.contactNumber = contactNumber;
         this.password = password;
+        this.status=status;
     }
 
 

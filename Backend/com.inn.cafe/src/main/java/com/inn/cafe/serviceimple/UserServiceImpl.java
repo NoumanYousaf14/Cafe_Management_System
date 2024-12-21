@@ -160,10 +160,14 @@ public class UserServiceImpl implements UserService {
             if(jwtFilter.isAdmin()){
               Optional<User> optional= userDao.findById(Integer.parseInt(requestMap.get("id")));
               if(!optional.isEmpty()){
-                  userDao.updateStatus(requestMap.get("status"),Integer.parseInt(requestMap.get("id")));
-                  sendMailToAllAdmin(requestMap.get("status"),optional.get().getEmail(),userDao.getAllAdmin());
-                  return CafeUtils.getResponseEntity("User updated successfully ",HttpStatus.OK);
-
+                  String status = requestMap.get("status");
+                  if ("true".equalsIgnoreCase(status) || "false".equalsIgnoreCase(status)) {
+                      userDao.updateStatus(status, Integer.parseInt(requestMap.get("id")));
+                      sendMailToAllAdmin(status, optional.get().getEmail(), userDao.getAllAdmin());
+                      return CafeUtils.getResponseEntity("User updated successfully", HttpStatus.OK);
+                  } else {
+                      return CafeUtils.getResponseEntity("Invalid status value", HttpStatus.BAD_REQUEST);
+                  }
               }else {
                   return CafeUtils.getResponseEntity("User id does not exist",HttpStatus.OK);
               }
